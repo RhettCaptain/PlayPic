@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.1.7//EN"
+	"http://struts.apache.org/dtds/struts-2.1.7.dtd">
+<!-- 指定Struts 2配置文件的根元素 -->
+<struts>	
+	<!-- 所有的Action定义都应该放在package下 -->
+	<package name="test" extends="struts-default">
+		<action name="submit" class="submitTest">	
+		    <param name="savePath">/upload</param>
+		    <param name="dealPath">/dealPath</param>
+			<result name="input">/index.jsp</result>
+			<result name="error">/error.jsp</result>
+			<result name="success">/index.jsp</result>
+		</action>
+	</package>
+</struts>
