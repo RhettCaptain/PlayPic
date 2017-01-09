@@ -16,8 +16,13 @@ public class InstantiationTracingBeanPostProcessor implements ServletContextAwar
 	public void onApplicationEvent(ContextRefreshedEvent arg0) {
 		// TODO 自动生成的方法存根
 		String path = servletContext.getRealPath("/");
-		
-		System.load(path+"WEB-INF\\lib\\"+Core.NATIVE_LIBRARY_NAME+".dll");  
+		try{
+			System.load(path+"WEB-INF\\lib\\"+Core.NATIVE_LIBRARY_NAME+".dll");  
+		}
+		catch(Throwable e)//防止多次调用报异常
+		{
+			
+		}
 	    System.out.println("######## Opencv加载完毕 ########");  
 		
 	}

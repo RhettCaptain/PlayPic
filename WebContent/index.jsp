@@ -9,6 +9,9 @@
 </head>
 <body>
 <s:form action="submit" method="post" enctype="multipart/form-data">
+	<s:select name="action" lable="滤镜" list="#{'binarization':'黑白','graying':'灰度'}" 
+		listKey="key" listValue="value"
+	/>
 	<s:file name="upload" label="选择文件" /><br/>
 	<s:submit value="上传" />
 	
