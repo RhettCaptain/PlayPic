@@ -11,6 +11,8 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class Test extends ActionSupport{
+	
+
 	private File upload;
 	private String uploadContentType;
 	private String uploadFileName;
@@ -20,6 +22,14 @@ public class Test extends ActionSupport{
 	private ImgTool imgTool;
 	private Boolean isSuccess;
 	
+	private String action;
+	
+	public String getAction() {
+		return action;
+	}
+	public void setAction(String action) {
+		this.action = action;
+	}
 	public String getDealPath() {
 		return ServletActionContext.getServletContext().getRealPath(dealPath);
 	}
@@ -45,7 +55,7 @@ public class Test extends ActionSupport{
 	public void setUploadFileName(String uploadFileName) {
 		UUID uuid = UUID.randomUUID();  
         String str = uuid.toString();
-        int i=uploadFileName.lastIndexOf(".");
+        int i=uploadFileName.lastIndexOf(".");  
         String ext=uploadFileName.substring(i);
 		this.uploadFileName = str+ext;
 	}
@@ -53,7 +63,7 @@ public class Test extends ActionSupport{
 		return ServletActionContext.getServletContext().getRealPath(savePath); 
 	}
 	public void setSavePath(String savePath) { 
-		this.savePath = savePath;
+		this.savePath = savePath;    
 	}
 	public ImgTool getImgTool() {
 		return imgTool;
@@ -68,7 +78,7 @@ public class Test extends ActionSupport{
 		this.isSuccess = isSuccess;
 	}
 
-	//定义处理用户请求的execute方法
+	//定义处理用户请求的execute方法  
 	public String execute() throws Exception
 	{
 		
@@ -76,14 +86,23 @@ public class Test extends ActionSupport{
 		FileInputStream fio=new FileInputStream(getUpload());
 		byte[] buffer=new byte[1024];
 		int len=0;
-		while((len=fio.read(buffer))>0)
+		while((len=fio.read(buffer))>0)  
 		{
 			fos.write(buffer,0,len);
 		}
 		setIsSuccess(true);
 		fos.close();
 		fio.close();
-		imgTool.graying(getSavePath()+"\\"+getUploadFileName(), getDealPath()+"\\"+getUploadFileName());
+		switch (getAction()) {
+		case "binarization":
+			imgTool.binarization(getSavePath()+"\\"+getUploadFileName(), getDealPath()+"\\"+getUploadFileName());
+			break;
+
+		case "graying":
+			imgTool.graying(getSavePath()+"\\"+getUploadFileName(), getDealPath()+"\\"+getUploadFileName());
+			break;
+		}
+		
 		return SUCCESS;  
 	}
 	
