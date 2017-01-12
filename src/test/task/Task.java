@@ -3,13 +3,17 @@ package test.task;
 import java.io.*;
 import java.util.*;
 
-public class Task {
-	
+import javax.servlet.ServletContext;
+
+import org.springframework.web.context.ServletContextAware;
+
+public class Task implements ServletContextAware{
+	private ServletContext serCont;
     public void deletePic() {  
     	//获取全部图片
-    	String rootPath = new File("").getAbsolutePath();
-    	File uploadPath = new File(rootPath +"\\WebContent\\upload");
-    	File dealPath = new File(rootPath +"\\WebContent\\dealPath");
+    	String rootPath = serCont.getRealPath("/");
+    	File uploadPath = new File(rootPath +"upload");
+    	File dealPath = new File(rootPath +"dealPath");
     	String[] uploadPics = uploadPath.list();
     	String[] dealPics = dealPath.list();
     	//获取当前分钟数
@@ -51,4 +55,10 @@ public class Task {
     	Task ttt = new Task();
     	ttt.deletePic();
     }
+
+	@Override
+	public void setServletContext(ServletContext arg0) {
+		// TODO Auto-generated method stub
+		serCont = arg0;
+	}
 }
