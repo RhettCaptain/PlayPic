@@ -93,13 +93,18 @@ public class Test extends ActionSupport{
 		setIsSuccess(true);
 		fos.close();
 		fio.close();
+		String oriPath = getSavePath()+"\\"+getUploadFileName();
+		String dealPath = getDealPath()+"\\"+getUploadFileName();
 		switch (getAction()) {
 		case "binarization":
-			imgTool.binarization(getSavePath()+"\\"+getUploadFileName(), getDealPath()+"\\"+getUploadFileName());
+			imgTool.binarization(oriPath, dealPath);
 			break;
 
 		case "graying":
-			imgTool.graying(getSavePath()+"\\"+getUploadFileName(), getDealPath()+"\\"+getUploadFileName());
+			imgTool.graying(oriPath, dealPath);
+			break;
+		case "txtCleanWaterMark":
+			imgTool.txtCleanWaterMarkByOtsu(oriPath, dealPath);
 			break;
 		}
 		
