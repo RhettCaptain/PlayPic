@@ -14,5 +14,10 @@
 			<result name="error">/error.jsp</result>
 			<result name="success">/index.jsp</result>
 		</action>
+		<action name="getFilters" class="Filters">			  
+			<result name="input">/index.jsp</result>
+			<result name="error">/error.jsp</result>
+			<result name="success">/index.jsp</result>
+		</action>
 	</package>
 </struts>

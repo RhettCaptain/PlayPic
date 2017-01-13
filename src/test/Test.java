@@ -2,6 +2,8 @@ package test;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.lang.reflect.Method;
+import java.util.HashMap;
 import java.util.UUID;
 
 import com.opensymphony.xwork2.ActionSupport;
@@ -24,9 +26,20 @@ public class Test extends ActionSupport{
 	
 	private String action;
 	
+	private String tip;
+	
+	public String getTip() {
+		return tip;
+	}
+
+	public void setTip(String tip) {
+		this.tip = tip;
+	}
+
 	public String getAction() {
 		return action;
 	}
+	
 	public void setAction(String action) {
 		this.action = action;
 	}
@@ -81,6 +94,21 @@ public class Test extends ActionSupport{
 	//定义处理用户请求的execute方法  
 	public String execute() throws Exception
 	{
+		Method[] methods = imgTool.getClass().getDeclaredMethods();
+		Method method = null;
+		boolean isHas=false;
+		for (Method item : methods) {
+			if(item.getName().equals(getAction()))
+			{
+				method=item;
+				isHas=true;
+			}
+		}
+		if(!isHas)
+		{
+			
+			return INPUT;
+		}
 		
 		FileOutputStream fos=new FileOutputStream(getSavePath()+"\\"+getUploadFileName());
 		FileInputStream fio=new FileInputStream(getUpload());
@@ -95,18 +123,8 @@ public class Test extends ActionSupport{
 		fio.close();
 		String oriPath = getSavePath()+"\\"+getUploadFileName();
 		String dealPath = getDealPath()+"\\"+getUploadFileName();
-		switch (getAction()) {
-		case "binarization":
-			imgTool.binarization(oriPath, dealPath);
-			break;
 
-		case "graying":
-			imgTool.graying(oriPath, dealPath);
-			break;
-		case "txtCleanWaterMark":
-			imgTool.txtCleanWaterMarkByOtsu(oriPath, dealPath);
-			break;
-		}
+		method.invoke(imgTool,oriPath,dealPath);	
 		
 		return SUCCESS;  
 	}

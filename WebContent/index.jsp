@@ -13,10 +13,10 @@
 <h1 style = text-align:center>Play<font color="#FF0000">P</font>ic</h1>
 <h2 style = text-align:center;color:gray>玩  图</h2>
 <hr />
-
+<s:action name="getFilters" var="filters" executeResult="false" />
 <s:form Class = "formCss" action="submit" method="post" enctype="multipart/form-data">
 	<font style = font-size:20px;><b>滤镜:</b></font>
-	<s:select id="select" name="action" lable="滤镜" list="#{'binarization':'黑白','graying':'灰度','txtCleanWaterMark':'文本去水印'}" 
+	<s:select id="select" name="action" lable="滤镜" list="#filters.filters" 
 		listKey="key" listValue="value"
 	/>
 	

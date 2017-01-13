@@ -17,7 +17,16 @@
 		<property name="imgTool" ref="imgTool"/>
 	</bean>
 	<bean id="deletePic" class="test.task.Task" />
-		
+	<bean id="Filters" class="test.Filters">
+		<!-- 依赖注入业务逻辑组件 -->
+		<property name="filters">
+		    <map>
+		        <entry key="binarization" value="黑白" />
+		        <entry key="graying" value="灰度" />
+		        <entry key="txtCleanWaterMarkByOtsu" value="文本去水印" />
+		    </map>
+		</property>
+	</bean>	
 	
 	<task:scheduled-tasks> 
         <task:scheduled ref="deletePic" method="deletePic" cron="0 0/1 * * * ?"/> 
