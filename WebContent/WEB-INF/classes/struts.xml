@@ -5,6 +5,7 @@
 <!-- 指定Struts 2配置文件的根元素 -->
 <struts>	
 	<!-- 所有的Action定义都应该放在package下 -->
+	<constant name="struts.ui.theme" value="simple"></constant>
 	<package name="test" extends="struts-default">
 		<action name="submit" class="submitTest">	
 		    <param name="savePath">/upload</param>
