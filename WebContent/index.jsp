@@ -14,7 +14,7 @@
 <h2 style = text-align:center;color:gray>玩  图</h2>
 <hr />
 <s:action name="getFilters" var="filters" executeResult="false" />
-<s:form Class = "formCss" action="submit" method="post" enctype="multipart/form-data">
+<s:form Class = "formCss" action="submit" method="post" enctype="multipart/form-data" validate="true">
 	<font style = font-size:20px;><b>滤镜:</b></font>
 	<s:select id="select" name="action" lable="滤镜" list="#filters.filters" 
 		listKey="key" listValue="value"
@@ -26,7 +26,7 @@
 	<s:submit id = "btnUpload" value="上   传"  />
 	
 </s:form>
-
+<s:fielderror/>
 <br/>
 
 

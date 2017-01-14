@@ -26,15 +26,6 @@ public class Test extends ActionSupport{
 	
 	private String action;
 	
-	private String tip;
-	
-	public String getTip() {
-		return tip;
-	}
-
-	public void setTip(String tip) {
-		this.tip = tip;
-	}
 
 	public String getAction() {
 		return action;
@@ -106,27 +97,29 @@ public class Test extends ActionSupport{
 		}
 		if(!isHas)
 		{
-			
-			return INPUT;
+			 
+			return INPUT; 
 		}
 		
 		FileOutputStream fos=new FileOutputStream(getSavePath()+"\\"+getUploadFileName());
 		FileInputStream fio=new FileInputStream(getUpload());
 		byte[] buffer=new byte[1024];
-		int len=0;
+		int len=0; 
 		while((len=fio.read(buffer))>0)  
 		{
 			fos.write(buffer,0,len);
 		}
-		setIsSuccess(true);
+		
 		fos.close();
 		fio.close();
 		String oriPath = getSavePath()+"\\"+getUploadFileName();
 		String dealPath = getDealPath()+"\\"+getUploadFileName();
 
 		method.invoke(imgTool,oriPath,dealPath);	
+		setIsSuccess(true);
 		
 		return SUCCESS;  
 	}
+	
 	
 }

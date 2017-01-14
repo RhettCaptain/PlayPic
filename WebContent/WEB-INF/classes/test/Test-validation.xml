@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="GBK"?>
+<!-- 指定校验配置文件的DTD信息 -->
+<!DOCTYPE validators PUBLIC 
+	"-//OpenSymphony Group//XWork Validator 1.0.3//EN"
+	"http://www.opensymphony.com/xwork/xwork-validator-1.0.3.dtd">
+<!-- 校验文件的根元素 -->
+<validators>
+	<!-- 校验Action的name属性 -->
+	<field name="upload">
+		<!-- 指定name属性必须满足必填规则 -->
+		<field-validator type="required" short-circuit="true">
+			<message>请选择图片</message>
+		</field-validator>
+		
+	</field>
+	
+</validators>

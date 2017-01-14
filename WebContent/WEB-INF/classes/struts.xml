@@ -5,11 +5,20 @@
 <!-- 指定Struts 2配置文件的根元素 -->
 <struts>	
 	<!-- 所有的Action定义都应该放在package下 -->
-	<constant name="struts.ui.theme" value="simple"></constant>
+	<constant name="struts.ui.theme" value="simple"/>
+	<constant name="struts.custom.i18n.resources" value="mess"/>
+	<constant name="struts.i18n.encoding" value="UTF-8"/>
 	<package name="test" extends="struts-default">
 		<action name="submit" class="submitTest">	
+		     <interceptor-ref name="fileUpload">
+		        <param name="allowedTypes">image/png,image/gif,image/jpeg</param>
+		    </interceptor-ref>
+		    <interceptor-ref name="defaultStack"/>   
+		    
 		    <param name="savePath">/upload</param>
 		    <param name="dealPath">/dealPath</param>
+		   		    		    
+		    
 			<result name="input">/index.jsp</result>
 			<result name="error">/error.jsp</result>
 			<result name="success">/index.jsp</result>
