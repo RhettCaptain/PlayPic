@@ -8,12 +8,13 @@
 	<constant name="struts.ui.theme" value="simple"/>
 	<constant name="struts.custom.i18n.resources" value="mess"/>
 	<constant name="struts.i18n.encoding" value="UTF-8"/>
+	<constant name="struts.multipart.saveDir" value="/tmp"/>
 	<package name="test" extends="struts-default">
 		<action name="submit" class="submitTest">	
-		     <interceptor-ref name="fileUpload">
+		    <interceptor-ref name="fileUpload">
 		        <param name="allowedTypes">image/png,image/gif,image/jpeg</param>
 		    </interceptor-ref>
-		    <interceptor-ref name="defaultStack"/>   
+		    <interceptor-ref name="defaultStack"/> 
 		    
 		    <param name="savePath">/upload</param>
 		    <param name="dealPath">/dealPath</param>

@@ -36,7 +36,7 @@ public class Task implements ServletContextAware{
     		}
     	}
     	for(String path:dealPics){
-    		File f = new File(uploadPath.getPath() + "\\" + path);
+    		File f = new File(dealPath.getPath() + "\\" + path);
     		long picTime = f.lastModified();
     		cal.setTimeInMillis(picTime);
     		int picMinute = cal.get(Calendar.MINUTE);

@@ -14,7 +14,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class Test extends ActionSupport{
 	
-
+	int i=0;
 	private File upload;
 	private String uploadContentType;
 	private String uploadFileName;
@@ -25,7 +25,6 @@ public class Test extends ActionSupport{
 	private Boolean isSuccess;
 	
 	private String action;
-	
 
 	public String getAction() {
 		return action;
@@ -57,11 +56,12 @@ public class Test extends ActionSupport{
 		return uploadFileName;
 	}
 	public void setUploadFileName(String uploadFileName) {
-		UUID uuid = UUID.randomUUID();  
+	/*	UUID uuid = UUID.randomUUID();  
         String str = uuid.toString();
         int i=uploadFileName.lastIndexOf(".");  
         String ext=uploadFileName.substring(i);
-		this.uploadFileName = str+ext;
+		this.uploadFileName = str+ext;*/
+		this.uploadFileName = i++ +".jpg";
 	}
 	public String getSavePath() { 
 		return ServletActionContext.getServletContext().getRealPath(savePath); 
