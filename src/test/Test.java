@@ -3,7 +3,6 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.lang.reflect.Method;
-import java.util.HashMap;
 import java.util.UUID;
 
 import com.opensymphony.xwork2.ActionSupport;
@@ -56,12 +55,12 @@ public class Test extends ActionSupport{
 		return uploadFileName;
 	}
 	public void setUploadFileName(String uploadFileName) {
-	/*	UUID uuid = UUID.randomUUID();  
+		UUID uuid = UUID.randomUUID();  
         String str = uuid.toString();
         int i=uploadFileName.lastIndexOf(".");  
         String ext=uploadFileName.substring(i);
-		this.uploadFileName = str+ext;*/
-		this.uploadFileName = i++ +".jpg";
+		this.uploadFileName = str+ext;
+		
 	}
 	public String getSavePath() { 
 		return ServletActionContext.getServletContext().getRealPath(savePath); 
